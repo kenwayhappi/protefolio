@@ -101,7 +101,7 @@
             ease: 'power2.out',
         });
     </script>
-    @vite('resources/js/app.js')
+    {{--@vite('resources/js/app.js')--}}
     @yield('scripts')
 </body>
 </html>
