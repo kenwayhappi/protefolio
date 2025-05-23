@@ -1,20 +1,29 @@
-FROM php:8.2-fpm
+FROM php:8.2-apache
 
+# Installer les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
-    libpng-dev libonig-dev libxml2-dev zip unzip git curl \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    libonig-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    curl \
+    git \
+    && docker-php-ext-install pdo pdo_mysql mbstring zip
 
+# Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Copier le code Laravel
+COPY . /var/www/html
+
+# Définir le répertoire de travail
 WORKDIR /var/www/html
 
-COPY . .
+# Donner les bonnes permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-RUN composer install --no-dev --optimize-autoloader
-
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
-
+# Exposer le port 80
 EXPOSE 80
 
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
-
+# Commande de démarrage (Apache)
+CMD ["apache2-foreground"]
