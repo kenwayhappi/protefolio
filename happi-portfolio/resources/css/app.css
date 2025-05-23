@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.theme-light {
+  @apply bg-gray-50 text-gray-800;
+}
+p, li, span:not(.no-theme) {
+  @apply  dark:text-text-dark;
+}
+
+.project-card h3 {
+  @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent dark:from-primary-dark dark:to-accent-dark;
+}
