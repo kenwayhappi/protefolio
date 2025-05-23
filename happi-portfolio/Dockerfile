@@ -6,6 +6,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip pdo pdo_mysql \
     && a2enmod rewrite
 
+# Installe Node.js et npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
+
 # Installe Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -17,10 +22,10 @@ WORKDIR /var/www/html
 # Installe les dépendances PHP via Composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Installer les dépendances Node
+# Installe les dépendances Node
 RUN npm install
 
-# Build Vite pour production
+# Construit Vite pour la production
 RUN npm run build
 
 # Change la racine du document Apache vers public
