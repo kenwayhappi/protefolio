@@ -17,6 +17,12 @@ WORKDIR /var/www/html
 # Installe les dépendances PHP via Composer
 RUN composer install --no-dev --optimize-autoloader
 
+# Installer les dépendances Node
+RUN npm install
+
+# Build Vite pour production
+RUN npm run build
+
 # Change la racine du document Apache vers public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
