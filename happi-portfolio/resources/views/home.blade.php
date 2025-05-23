@@ -26,7 +26,7 @@
         <div class="grid md:grid-cols-3 gap-8">
             <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg" data-gsap="fade-up" data-gsap-delay="0.2">
                 <h3 class="text-xl font-semibold mb-4">Expertise Technique</h3>
-                <p class="text-text-light dark:text-text-dark">Maîtrise de Laravel, Flutter, et bases de données pour des solutions robustes.</p>
+                <p class="text-text-light dark:text-text-dark">Maîtrise de Laravel, Flutter, et bases de données pour des solutions robustes.Outil d'infographie</p>
             </div>
             <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg" data-gsap="fade-up" data-gsap-delay="0.4">
                 <h3 class="text-xl font-semibold mb-4">Approche Client</h3>
