@@ -32,6 +32,7 @@ RUN npm run build
 RUN ls -la /var/www/html/public/build
 RUN ls -la /var/www/html/public/build/assets
 RUN cat /var/www/html/public/build/manifest.json || echo "manifest.json non trouvé"
+RUN head -n 20 /var/www/html/public/build/assets/app-DI-eUGaj.css || echo "CSS file not found"
 
 # Corrige les permissions
 RUN chown -R www-data:www-data /var/www/html/public/build
