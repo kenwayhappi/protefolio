@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased font-sans">
     <!-- Theme Toggle -->
@@ -101,7 +101,6 @@
             ease: 'power2.out',
         });
     </script>
-    @vite('resources/js/app.js')
     @yield('scripts')
 </body>
 </html>
