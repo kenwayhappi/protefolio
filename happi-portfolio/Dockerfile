@@ -28,25 +28,12 @@ RUN npm install
 # Construit Vite pour la production
 RUN npm run build
 
-# Vérifie les fichiers générés
-RUN ls -la /var/www/html/public/build
-RUN ls -la /var/www/html/public/build/assets
-RUN cat /var/www/html/public/build/manifest.json || echo "manifest.json non trouvé"
-RUN head -n 20 /var/www/html/public/build/assets/app-DI-eUGaj.css || echo "CSS file not found"
-
-# Corrige les permissions
-RUN chown -R www-data:www-data /var/www/html/public/build
-RUN chmod -R 755 /var/www/html/public/build
-
 # Change la racine du document Apache vers public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
 
-# Ajoute ServerName pour supprimer l'avertissement Apache
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-# Droits nécessaires pour Laravel
+# Droits nécessaires
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 80
